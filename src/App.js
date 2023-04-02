@@ -1,11 +1,15 @@
 import './App.css';
-
+import Dummy from "./components/Dummy"
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
+    <div>
+     <h1>hello world...</h1>
+     <Dummy/>
     </div>
   );
-}
+};
+
+
+
 
 export default App;
