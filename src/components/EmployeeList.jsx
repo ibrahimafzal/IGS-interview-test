@@ -35,10 +35,10 @@ const EmployeeList = () => {
         {
           list?.length > 0 && list.map(emp =>
             <tr>
-              <td>{emp.name}</td>
-              <td>{emp.salary}</td>
               <td>{emp.id}</td>
+              <td>{emp.name}</td>
               <td>{emp.department}</td>
+              <td>{emp.salary}</td>
             </tr>
           )}
       </table>
