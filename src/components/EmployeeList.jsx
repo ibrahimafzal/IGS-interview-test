@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {getEmployeeList} from './action';
+import { getEmployeeList } from './action';
+import { Link } from 'react-router-dom';
+import '../components/styles.css'
 
 const EmployeeList = () => {
 
@@ -14,24 +16,32 @@ const EmployeeList = () => {
   useEffect(() => {
     dispatch(getEmployeeList())
   }, [])
+  if (loading)
+    return <p>Loading...</p>
 
   return (
-    <div>
-      {loading ?
-
-        <p>Loading...</p>
-        :
-        list?.length > 0 && list.map(emp =>
-          <div key={emp.id} style={{ display: 'flex', justifyContent: 'space-around' }}>
-            <p>{emp.name}</p>
-            <p>{emp.salary}</p>
-            <p>{emp.id}</p>
-            <p>{emp.department}</p>
-
-          </div>
-        )
-      }
-
+    <div style={{ margin: '20px' }}>
+      <div className='' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1>Employees</h1>
+        <Link to='/addEmployee'>Add Employe</Link>
+      </div>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Salary</th>
+        </tr>
+        {
+          list?.length > 0 && list.map(emp =>
+            <tr>
+              <td>{emp.name}</td>
+              <td>{emp.salary}</td>
+              <td>{emp.id}</td>
+              <td>{emp.department}</td>
+            </tr>
+          )}
+      </table>
     </div>
   )
 }

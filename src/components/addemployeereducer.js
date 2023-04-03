@@ -16,6 +16,7 @@ const addEmployeeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                success: true,
                 list: [...state.list, action.payload]
             }
 

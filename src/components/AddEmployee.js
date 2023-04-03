@@ -1,6 +1,8 @@
 import React, { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addEmployee } from './action';
+import '../components/addEmployee.css'
+import { useNavigate } from 'react-router-dom';
 
 const AddEmployee = () => {
   const [name, setName] = useState('')
@@ -8,9 +10,11 @@ const AddEmployee = () => {
   const [salary, setSalary] = useState('')
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const addEmployees = useSelector(state => state.addEmployeeReducer)
-  // const { list, loading, error } = addEmployee
+  const { list, loading, error , success} = addEmployees
+  // console.log("success:", success);
 
 
   const handleAddEmployee = () =>{
@@ -18,8 +22,15 @@ const AddEmployee = () => {
     dispatch(addEmployee({name,department,salary}))
   }
 
+  useEffect(()=>{
+    if (success) {
+      navigate('/')
+    }
+  },[success])
+
   return (
-    <div style={{display:'flex'}}>
+    <div className='container'>
+      <h1>Add Employee</h1>
       <input type="text" placeholder='name' value={name} onChange={(e) => setName(e.target.value)}/>
       <input type="text" placeholder='department' value={department} onChange={(e) => setDepartment(e.target.value)}/>
       <input type="text" placeholder='salary'value={salary} onChange={(e) => setSalary(e.target.value)}/>
